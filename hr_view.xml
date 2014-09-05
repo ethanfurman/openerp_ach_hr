@@ -12,7 +12,7 @@
                     <page string="ACH" groups="automated_clearing_house_hr.configure,automated_clearing_house_hr.approve">
                         <group>
                             <group>
-                                <field name="ach_type" widget="select" readwrite="groups('automated_clearing_house_hr_configure')"/>
+                                <field name="ach_type" widget="select" readwrite="groups('automated_clearing_house_hr.configure')"/>
                                 <separator colspan="2"/>
                                 <label for="ach_routing" string="Routing #"/>
                                 <field name="ach_routing" nolabel="1" readwrite="groups('automated_clearing_house_hr.configure')"/>

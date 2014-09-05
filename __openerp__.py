@@ -37,6 +37,7 @@ enable Direct Deposit.
     'data': [
         'hr_view.xml',
         'security/ach_hr_security.xml',
+        'security/ir.model.access.csv',
         ],
     'demo_xml': [],
     'installable': True,

@@ -1,7 +1,8 @@
-from fnx import validate_ach
+from automated_clearing_house.ach import ach
 from openerp.osv import fields, osv
+from openerp import SUPERUSER_ID as SUPERUSER
 
-class hr_employee(osv.Model):
+class hr_employee(ach, osv.Model):
     _name = 'hr.employee'
     _inherit = 'hr.employee'
     _columns = {
@@ -13,14 +14,9 @@ class hr_employee(osv.Model):
         'ach_date': fields.date('Last Transaction'),
         }
 
-    def create(self, cr, uid, values, context=None):
-        validate_ach(values)
-        return super(res_partner, self).create(cr, uid, values, context=context)
-
-    def write(self, cr, uid, ids, values, context=None):
-        if ids:
-            if isinstance(ids, (int, long)):
-                ids = [ids]
-            for partner in self.browse(cr, uid, id, context=context):
-                validate_ach(values, partner)
-        return super(res_partner, self).write(cr, uid, ids, values, context=context)
+    def ach_users(self, cr, uid, context=None):
+        return self.pool.get('res.users').browse(cr, SUPERUSER, [
+            '|',
+            ('groups_id.full_name','=','Automated Clearing House / Configure Employee ACH Info'),
+            ('groups_id.full_name','=','Automated Clearing House / Approve Employee ACH Info'),
+            ], context=context)

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_ach_user_configure,hr.employee ach user configure,model_hr_employee,automated_clearing_house_hr.configure,1,1,0,0
+access_hr_ach_user_approve,hr.employee ach user approve,model_hr_employee,automated_clearing_house_hr.approve,1,1,0,0
+
