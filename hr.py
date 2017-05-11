@@ -14,6 +14,12 @@ class hr_employee(ach, osv.Model):
         'ach_date': fields.date('Last Transaction'),
         }
 
+    fields.apply_groups(
+            _columns,
+            {'automated_clearing_house.configure,automated_clearing_house.setup,automated_clearing_house.approve':
+                ['ach_.*']},
+            )
+
     def ach_users(self, cr, uid, context=None):
         return self.pool.get('res.users').browse(cr, SUPERUSER, [
             '|',
